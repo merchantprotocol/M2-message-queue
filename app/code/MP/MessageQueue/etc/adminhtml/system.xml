@@ -28,7 +28,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="message_queue" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
-            <label>Recurring</label>
+            <label>Message Queue</label>
             <tab>merchantprotocol</tab>
             <resource>MP_MessageQueue::settings</resource>
             <group id="mysqlmq" translate="label comment" type="text" sortOrder="10" showInDefault="1">

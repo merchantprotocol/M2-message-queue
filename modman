@@ -5,6 +5,7 @@ app/code/MP/MessageQueue/etc/config.xml app/code/MP/MessageQueue/etc/config.xml
 app/code/MP/MessageQueue/etc/module.xml app/code/MP/MessageQueue/etc/module.xml
 app/code/MP/MessageQueue/etc/crontab.xml app/code/MP/MessageQueue/etc/crontab.xml
 app/code/MP/MessageQueue/etc/adminhtml/system.xml app/code/MP/MessageQueue/etc/adminhtml/system.xml
+app/code/MP/MessageQueue/etc/adminhtml/menu.xml app/code/MP/MessageQueue/etc/adminhtml/menu.xml
 app/code/MP/MessageQueue/Model/Driver/QueueFactory.php app/code/MP/MessageQueue/Model/Driver/QueueFactory.php
 app/code/MP/MessageQueue/Model/Driver/Exchange.php app/code/MP/MessageQueue/Model/Driver/Exchange.php
 app/code/MP/MessageQueue/Model/Driver/Bulk/Exchange.php app/code/MP/MessageQueue/Model/Driver/Bulk/Exchange.php

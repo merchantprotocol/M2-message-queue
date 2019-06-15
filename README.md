@@ -1,2 +1,2 @@
-# M2-base
-Base extension for Magento 2
+# M2-message-queue
+Message Queue extension for Magento 2
