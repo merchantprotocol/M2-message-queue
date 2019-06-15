@@ -1,3 +1,4 @@
+app/code/MP/MessageQueue/Setup/Recurring.php app/code/MP/MessageQueue/Setup/Recurring.php
 app/code/MP/MessageQueue/etc/db_schema.xml app/code/MP/MessageQueue/etc/db_schema.xml
 app/code/MP/MessageQueue/etc/di.xml app/code/MP/MessageQueue/etc/di.xml
 app/code/MP/MessageQueue/etc/db_schema_whitelist.json app/code/MP/MessageQueue/etc/db_schema_whitelist.json
