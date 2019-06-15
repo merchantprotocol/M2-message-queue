@@ -6,6 +6,8 @@ app/code/MP/MessageQueue/etc/module.xml app/code/MP/MessageQueue/etc/module.xml
 app/code/MP/MessageQueue/etc/crontab.xml app/code/MP/MessageQueue/etc/crontab.xml
 app/code/MP/MessageQueue/etc/adminhtml/system.xml app/code/MP/MessageQueue/etc/adminhtml/system.xml
 app/code/MP/MessageQueue/etc/adminhtml/menu.xml app/code/MP/MessageQueue/etc/adminhtml/menu.xml
+app/code/MP/MessageQueue/etc/adminhtml/routes.xml app/code/MP/MessageQueue/etc/adminhtml/routes.xml
+app/code/MP/MessageQueue/Controller/Adminhtml/Queue/Index.php app/code/MP/MessageQueue/Controller/Adminhtml/Queue/Index.php
 app/code/MP/MessageQueue/Model/Driver/QueueFactory.php app/code/MP/MessageQueue/Model/Driver/QueueFactory.php
 app/code/MP/MessageQueue/Model/Driver/Exchange.php app/code/MP/MessageQueue/Model/Driver/Exchange.php
 app/code/MP/MessageQueue/Model/Driver/Bulk/Exchange.php app/code/MP/MessageQueue/Model/Driver/Bulk/Exchange.php
@@ -19,9 +21,12 @@ app/code/MP/MessageQueue/Model/QueueManagement.php app/code/MP/MessageQueue/Mode
 app/code/MP/MessageQueue/Model/ResourceModel/MessageStatus/Collection.php app/code/MP/MessageQueue/Model/ResourceModel/MessageStatus/Collection.php
 app/code/MP/MessageQueue/Model/ResourceModel/MessageStatus.php app/code/MP/MessageQueue/Model/ResourceModel/MessageStatus.php
 app/code/MP/MessageQueue/Model/ResourceModel/Message/Collection.php app/code/MP/MessageQueue/Model/ResourceModel/Message/Collection.php
+app/code/MP/MessageQueue/Model/ResourceModel/Message/Grid/Collection.php app/code/MP/MessageQueue/Model/ResourceModel/Message/Grid/Collection.php
 app/code/MP/MessageQueue/Model/ResourceModel/Queue.php app/code/MP/MessageQueue/Model/ResourceModel/Queue.php
 app/code/MP/MessageQueue/Model/ResourceModel/Queue/Collection.php app/code/MP/MessageQueue/Model/ResourceModel/Queue/Collection.php
 app/code/MP/MessageQueue/Model/ResourceModel/Message.php app/code/MP/MessageQueue/Model/ResourceModel/Message.php
+app/code/MP/MessageQueue/view/adminhtml/layout/mpdb_queue_index.xml app/code/MP/MessageQueue/view/adminhtml/layout/mpdb_queue_index.xml
+app/code/MP/MessageQueue/view/adminhtml/ui_component/mpdb_queue_listing.xml app/code/MP/MessageQueue/view/adminhtml/ui_component/mpdb_queue_listing.xml
 app/code/MP/MessageQueue/Api/Data/QueueInterface.php app/code/MP/MessageQueue/Api/Data/QueueInterface.php
 app/code/MP/MessageQueue/Api/Data/MessageStatusInterface.php app/code/MP/MessageQueue/Api/Data/MessageStatusInterface.php
 app/code/MP/MessageQueue/Api/Data/MessageInterface.php app/code/MP/MessageQueue/Api/Data/MessageInterface.php

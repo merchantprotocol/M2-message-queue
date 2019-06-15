@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mage Plugins, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mage Plugins Commercial License (MPCL 1.0)
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://mageplugins.net/commercial-license/
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to mageplugins@gmail.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.mageplugins.net for more information.
+ *
+ * @category   MP
+ * @package    MP_MessageQueue
+ * @copyright  Copyright (c) 2006-2019 Mage Plugins, Inc. and affiliates (https://mageplugins.net/)
+ * @license    https://mageplugins.net/commercial-license/ Mage Plugins Commercial License (MPCL 1.0)
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mpdb_queue_listing.mpdb_queue_listing_data_source</item>
+        </item>
+    </argument>
+
+    <settings>
+        <spinner>mpdb_queue_columns</spinner>
+        <deps>
+            <dep>mpdb_queue_listing.mpdb_queue_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="mpdb_queue_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>MP_MessageQueue::queue</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="mpdb_queue_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="mpdb_queue_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="queue_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Queue ID</label>
+            </settings>
+        </column>
+        <column name="message_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Message ID</label>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Queue Name</label>
+            </settings>
+        </column>
+        <column name="topic_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Topic Name</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options>
+                    <option name="new" xsi:type="array">
+                        <item name="value" xsi:type="string">2</item>
+                        <item name="label" xsi:type="string" translate="true">Pending</item>
+                    </option>
+                    <option name="in_progress" xsi:type="array">
+                        <item name="value" xsi:type="string">3</item>
+                        <item name="label" xsi:type="string" translate="true">In Progress</item>
+                    </option>
+                    <option name="complete" xsi:type="array">
+                        <item name="value" xsi:type="string">4</item>
+                        <item name="label" xsi:type="string" translate="true">Completed</item>
+                    </option>
+                    <option name="retry_required" xsi:type="array">
+                        <item name="value" xsi:type="string">5</item>
+                        <item name="label" xsi:type="string" translate="true">Retry Required</item>
+                    </option>
+                    <option name="error" xsi:type="array">
+                        <item name="value" xsi:type="string">6</item>
+                        <item name="label" xsi:type="string" translate="true">Error</item>
+                    </option>
+                    <option name="to_be_deleted" xsi:type="array">
+                        <item name="value" xsi:type="string">7</item>
+                        <item name="label" xsi:type="string" translate="true">To Be Deleted</item>
+                    </option>
+                </options>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="number_of_trials">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Number of Trials</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated At</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+    </columns>
+</listing>

@@ -1,4 +1,5 @@
-<?php
+<?xml version="1.0"?>
+<!--
 /**
  * Mage Plugins, Inc.
  *
@@ -23,58 +24,11 @@
  * @copyright  Copyright (c) 2006-2019 Mage Plugins, Inc. and affiliates (https://mageplugins.net/)
  * @license    https://mageplugins.net/commercial-license/ Mage Plugins Commercial License (MPCL 1.0)
  */
-
-namespace MP\MessageQueue\Api\Data;
-
-/**
- * Interface MessageInterface
- *
- * @package MP\MessageQueue\Api\Data
- */
-interface MessageInterface
-{
-    /**
-     * @const string
-     */
-    const ENTITY = 'mpdb_queue_message';
-
-    /**
-     * @const string
-     */
-    const ENTITY_ID  = 'id';
-    const TOPIC_NAME = 'topic_name';
-    const BODY       = 'body';
-
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function setId($id);
-
-    /**
-     * @return int|null
-     */
-    public function getId();
-
-    /**
-     * @param string $topicName
-     * @return $this
-     */
-    public function setTopicName($topicName);
-
-    /**
-     * @return string|null
-     */
-    public function getTopicName();
-
-    /**
-     * @param string $body
-     * @return $this
-     */
-    public function setBody($body);
-
-    /**
-     * @return string|null
-     */
-    public function getBody();
-}
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="mpdb" frontName="mpdb">
+            <module name="MP_MessageQueue"/>
+        </route>
+    </router>
+</config>

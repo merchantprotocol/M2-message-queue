@@ -24,57 +24,33 @@
  * @license    https://mageplugins.net/commercial-license/ Mage Plugins Commercial License (MPCL 1.0)
  */
 
-namespace MP\MessageQueue\Api\Data;
+namespace MP\MessageQueue\Controller\Adminhtml\Queue;
 
 /**
- * Interface MessageInterface
+ * Class Index
  *
- * @package MP\MessageQueue\Api\Data
+ * @package MP\MessageQueue\Controller\Adminhtml\Queue
  */
-interface MessageInterface
+class Index extends \Magento\Backend\App\Action
 {
     /**
+     * @see \Magento\Backend\App\Action\_isAllowed()
      * @const string
      */
-    const ENTITY = 'mpdb_queue_message';
+    const ADMIN_RESOURCE = 'MP_MessageQueue::queue';
 
     /**
-     * @const string
+     * @return \Magento\Framework\Controller\ResultInterface
      */
-    const ENTITY_ID  = 'id';
-    const TOPIC_NAME = 'topic_name';
-    const BODY       = 'body';
+    public function execute()
+    {
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_PAGE);
+        $resultPage->setActiveMenu(static::ADMIN_RESOURCE);
+        $resultPage->addBreadcrumb(__('Message Queue'), __('Message Queue'));
+        $resultPage->addBreadcrumb(__('Queue'), __('Queue'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage Queue'));
 
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function setId($id);
-
-    /**
-     * @return int|null
-     */
-    public function getId();
-
-    /**
-     * @param string $topicName
-     * @return $this
-     */
-    public function setTopicName($topicName);
-
-    /**
-     * @return string|null
-     */
-    public function getTopicName();
-
-    /**
-     * @param string $body
-     * @return $this
-     */
-    public function setBody($body);
-
-    /**
-     * @return string|null
-     */
-    public function getBody();
+        return $resultPage;
+    }
 }
