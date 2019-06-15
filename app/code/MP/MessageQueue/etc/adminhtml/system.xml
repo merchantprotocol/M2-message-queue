@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mage Plugins, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mage Plugins Commercial License (MPCL 1.0)
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://mageplugins.net/commercial-license/
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to mageplugins@gmail.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://www.mageplugins.net for more information.
+ *
+ * @category   MP
+ * @package    MP_MessageQueue
+ * @copyright  Copyright (c) 2006-2019 Mage Plugins, Inc. and affiliates (https://mageplugins.net/)
+ * @license    https://mageplugins.net/commercial-license/ Mage Plugins Commercial License (MPCL 1.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="message_queue" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+            <label>Recurring</label>
+            <tab>merchantprotocol</tab>
+            <resource>MP_MessageQueue::settings</resource>
+            <group id="mysqlmq" translate="label comment" type="text" sortOrder="10" showInDefault="1">
+                <label>MySQL Message Queue Cleanup</label>
+                <comment>All the times are in minutes. Use "0" if you want to skip automatic clearance.</comment>
+                <field id="retry_inprogress_after" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>Retry Messages In Progress After</label>
+                </field>
+                <field id="successful_messages_lifetime" translate="label" type="text" sortOrder="20" showInDefault="1">
+                    <label>Successful Messages Lifetime</label>
+                </field>
+                <field id="failed_messages_lifetime" translate="label" type="text" sortOrder="30" showInDefault="1">
+                    <label>Failed Messages Lifetime</label>
+                </field>
+                <field id="new_messages_lifetime" translate="label" type="text" sortOrder="40" showInDefault="1">
+                    <label>New Messages Lifetime</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
