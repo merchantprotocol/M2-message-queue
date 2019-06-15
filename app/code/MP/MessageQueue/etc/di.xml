@@ -72,6 +72,15 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mpdb_queue_listing_data_source" xsi:type="string">MP\MessageQueue\Model\ResourceModel\Message\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
     <virtualType name="MP\MessageQueue\Model\Driver\Bulk\ExchangeFactory" type="MP\MessageQueue\Model\Driver\ExchangeFactory">
         <arguments>
             <argument name="instanceName" xsi:type="string">\MP\MessageQueue\Model\Driver\Bulk\Exchange</argument>

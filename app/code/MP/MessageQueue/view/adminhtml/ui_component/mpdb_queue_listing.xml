@@ -114,6 +114,12 @@
                 <label translate="true">Topic Name</label>
             </settings>
         </column>
+        <column name="body">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Body</label>
+            </settings>
+        </column>
         <column name="status" component="Magento_Ui/js/grid/columns/select">
             <settings>
                 <options>

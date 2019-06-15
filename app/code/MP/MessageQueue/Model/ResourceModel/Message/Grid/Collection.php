@@ -63,7 +63,7 @@ class Collection
         $this->getSelect()
             ->from(
                 ['main_table' => $queueMessageTable],
-                ['topic_name', 'body']
+                ['id', 'topic_name', 'body']
             )
             ->joinInner(
                 ['qms' => $queueMessageStatusTable],
