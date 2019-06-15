@@ -72,6 +72,11 @@
             </argument>
         </arguments>
     </type>
+    <virtualType name="MP\MessageQueue\Model\Driver\Bulk\ExchangeFactory" type="MP\MessageQueue\Model\Driver\ExchangeFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">\MP\MessageQueue\Model\Driver\Bulk\Exchange</argument>
+        </arguments>
+    </virtualType>
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
@@ -81,9 +86,23 @@
         </arguments>
     </type>
 
-    <virtualType name="MP\MessageQueue\Model\Driver\Bulk\ExchangeFactory" type="MP\MessageQueue\Model\Driver\ExchangeFactory">
+    <type name="Magento\Framework\MessageQueue\Config\Reader\Env\Converter\Publisher">
         <arguments>
-            <argument name="instanceName" xsi:type="string">\MP\MessageQueue\Model\Driver\Bulk\Exchange</argument>
+            <argument name="connectionToExchangeMap" xsi:type="array">
+                <item name="mpdb" xsi:type="string">magento-mpdb</item>
+            </argument>
         </arguments>
-    </virtualType>
+    </type>
+    <type name="Magento\Framework\MessageQueue\Publisher\Config\Env\Reader">
+        <arguments>
+            <argument name="publisherNameToConnectionMap" xsi:type="array">
+                <item name="mpdb-magento-mpdb" xsi:type="string">mpdb</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\MysqlMq\Setup\Recurring">
+        <plugin name="mysqlMqSetupRecurring" type="MP\MessageQueue\Plugin\MysqlMq\Setup\Recurring"/>
+    </type>
+    <!--preference for="MP\Recurring\Api\Data\OrderInterface" type="MP\Recurring\Model\Order"/-->
 </config>

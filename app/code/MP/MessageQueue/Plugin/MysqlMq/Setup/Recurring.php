@@ -24,14 +24,14 @@
  * @license    https://mageplugins.net/commercial-license/ Mage Plugins Commercial License (MPCL 1.0)
  */
 
-namespace MP\MessageQueue\Setup;
+namespace MP\MessageQueue\Plugin\MysqlMq\Setup;
 
 /**
  * Class Recurring
  *
- * @package MP\MessageQueue\Setup
+ * @package MP\MessageQueue\Plugin\MysqlMq\Setup
  */
-class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
+class Recurring
 {
     /**
      * @var \Magento\Framework\MessageQueue\ConfigInterface
@@ -50,10 +50,15 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
     }
 
     /**
+     * @param \Magento\MysqlMq\Setup\Recurring $subject
+     * @param \Closure $proceed
      * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
      * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     * @return void
      */
-    public function install(
+    public function aroundInstall(
+        \Magento\MysqlMq\Setup\Recurring $subject,
+        \Closure $proceed,
         \Magento\Framework\Setup\SchemaSetupInterface $setup,
         \Magento\Framework\Setup\ModuleContextInterface $context
     ) {
@@ -63,7 +68,7 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
         $queues = [];
 
         foreach ($binds as $bind) {
-            if ($bind[\Magento\Framework\MessageQueue\ConfigInterface::BIND_EXCHANGE] != 'magento-mpdb') {
+            if ($bind[\Magento\Framework\MessageQueue\ConfigInterface::BIND_EXCHANGE] == 'magento-mpdb') {
                 continue;
             }
 
@@ -71,7 +76,7 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
         }
 
         $connection     = $setup->getConnection();
-        $queueTableName = $setup->getTable(\MP\MessageQueue\Api\Data\QueueInterface::ENTITY);
+        $queueTableName = $setup->getTable('queue');
 
         $existingQueues = $connection->fetchCol(
             $connection->select()->from($queueTableName, 'name')
@@ -80,7 +85,7 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
         $queues = array_unique(array_diff($queues, $existingQueues));
 
         /**
-         * Populate 'mpdb_queue' table
+         * Populate 'queue' table
          */
         if (!empty($queues)) {
             $connection->insertArray($queueTableName, ['name'], $queues);
