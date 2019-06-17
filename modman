@@ -33,6 +33,8 @@ app/code/MP/MessageQueue/Api/Data/QueueInterface.php app/code/MP/MessageQueue/Ap
 app/code/MP/MessageQueue/Api/Data/MessageStatusInterface.php app/code/MP/MessageQueue/Api/Data/MessageStatusInterface.php
 app/code/MP/MessageQueue/Api/Data/MessageInterface.php app/code/MP/MessageQueue/Api/Data/MessageInterface.php
 app/code/MP/MessageQueue/i18n/en_US.csv app/code/MP/MessageQueue/i18n/en_US.csv
+app/code/MP/MessageQueue/Helper/AbstractHelper.php app/code/MP/MessageQueue/Helper/AbstractHelper.php
+app/code/MP/MessageQueue/Helper/Data.php app/code/MP/MessageQueue/Helper/Data.php
 app/code/MP/MessageQueue/registration.php app/code/MP/MessageQueue/registration.php
 app/code/MP/MessageQueue/composer.json app/code/MP/MessageQueue/composer.json
 app/code/MP/MessageQueue/Cron/CleanupMessages.php app/code/MP/MessageQueue/Cron/CleanupMessages.php
