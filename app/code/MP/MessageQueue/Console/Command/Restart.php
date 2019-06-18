@@ -27,16 +27,16 @@
 namespace MP\MessageQueue\Console\Command;
 
 /**
- * Class Start
+ * Class Restart
  *
  * @package MP\MessageQueue\Console\Command
  */
-class Start extends \MP\MessageQueue\Console\AbstractCommand
+class Restart extends \MP\MessageQueue\Console\AbstractCommand
 {
     /**
      * @const string
      */
-    const COMMAND = 'mpdb:consumer:clean';
+    const COMMAND = 'mpdb:consumer:restart';
 
     /**
      * @return void
