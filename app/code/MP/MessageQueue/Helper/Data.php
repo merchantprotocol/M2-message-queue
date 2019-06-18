@@ -41,22 +41,22 @@ class Data extends \MP\MessageQueue\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\App\DeploymentConfig
      */
-    protected $deploymentConfig;
+    private $deploymentConfig;
 
     /**
      * @var \Magento\Framework\MessageQueue\ConnectionTypeResolver
      */
-    protected $connectionTypeResolver;
+    private $connectionTypeResolver;
 
     /**
      * @var \Magento\Framework\MessageQueue\Consumer\ConfigInterface
      */
-    protected $consumerConfig;
+    private $consumerConfig;
 
     /**
      * @var \Magento\MessageQueue\Model\Cron\ConsumersRunner\PidConsumerManager
      */
-    protected $pidConsumerManager;
+    private $pidConsumerManager;
 
     /**
      * Data constructor
@@ -101,7 +101,7 @@ class Data extends \MP\MessageQueue\Helper\AbstractHelper
      * @return bool
      * @throws \Magento\Framework\Exception\FileSystemException
      */
-    protected function canBeRun(
+    public function canBeRun(
         \Magento\Framework\MessageQueue\Consumer\Config\ConsumerConfigItemInterface $consumerConfig
     ) {
         $runByCron = $this->deploymentConfig->get('cron_consumers_runner/cron_run', true);
@@ -131,7 +131,7 @@ class Data extends \MP\MessageQueue\Helper\AbstractHelper
      * @param string $consumerName
      * @return string
      */
-    protected function getPidFilePath($consumerName)
+    public function getPidFilePath($consumerName)
     {
         $sanitizedHostname = preg_replace('/[^a-z0-9]/i', '', gethostname());
 

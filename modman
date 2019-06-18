@@ -42,3 +42,10 @@ app/code/MP/MessageQueue/Helper/Data.php app/code/MP/MessageQueue/Helper/Data.ph
 app/code/MP/MessageQueue/registration.php app/code/MP/MessageQueue/registration.php
 app/code/MP/MessageQueue/composer.json app/code/MP/MessageQueue/composer.json
 app/code/MP/MessageQueue/Cron/CleanupMessages.php app/code/MP/MessageQueue/Cron/CleanupMessages.php
+app/code/MP/MessageQueue/Console/AbstractCommand.php app/code/MP/MessageQueue/Console/AbstractCommand.php
+app/code/MP/MessageQueue/Console/Command/Stop.php app/code/MP/MessageQueue/Console/Command/Stop.php
+app/code/MP/MessageQueue/Console/Command/Unpause.php app/code/MP/MessageQueue/Console/Command/Unpause.php
+app/code/MP/MessageQueue/Console/Command/Restart.php app/code/MP/MessageQueue/Console/Command/Restart.php
+app/code/MP/MessageQueue/Console/Command/Pause.php app/code/MP/MessageQueue/Console/Command/Pause.php
+app/code/MP/MessageQueue/Console/Command/Clean.php app/code/MP/MessageQueue/Console/Command/Clean.php
+app/code/MP/MessageQueue/Console/Command/Start.php app/code/MP/MessageQueue/Console/Command/Start.php

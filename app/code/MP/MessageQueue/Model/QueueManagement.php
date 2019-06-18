@@ -26,8 +26,6 @@
 
 namespace MP\MessageQueue\Model;
 
-use Magento\MysqlMq\Model\MessageStatus;
-
 /**
  * Class QueueManagement
  *

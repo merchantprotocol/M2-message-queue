@@ -38,7 +38,7 @@ class Collection
     /**
      * @var \Magento\Framework\Api\Search\AggregationInterface
      */
-    protected $aggregations;
+    private $aggregations;
 
     /**
      * @return void

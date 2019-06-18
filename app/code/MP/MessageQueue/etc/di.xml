@@ -102,6 +102,19 @@
         </arguments>
     </type>
 
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="start" xsi:type="object">MP\MessageQueue\Console\Command\Start</item>
+                <item name="stop" xsi:type="object">MP\MessageQueue\Console\Command\Stop</item>
+                <item name="restart" xsi:type="object">MP\MessageQueue\Console\Command\Restart</item>
+                <item name="pause" xsi:type="object">MP\MessageQueue\Console\Command\Pause</item>
+                <item name="unpause" xsi:type="object">MP\MessageQueue\Console\Command\Unpause</item>
+                <item name="clean" xsi:type="object">MP\MessageQueue\Console\Command\Clean</item>
+            </argument>
+        </arguments>
+    </type>
+
     <type name="Magento\MysqlMq\Setup\Recurring">
         <plugin name="mysqlMqSetupRecurring" type="MP\MessageQueue\Plugin\MysqlMq\Setup\Recurring"/>
     </type>

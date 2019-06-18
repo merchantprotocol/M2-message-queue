@@ -24,37 +24,39 @@
  * @license    https://mageplugins.net/commercial-license/ Mage Plugins Commercial License (MPCL 1.0)
  */
 
-namespace MP\MessageQueue\Model;
+namespace MP\MessageQueue\Console\Command;
 
 /**
- * Class CleanupMessages
+ * Class Start
  *
- * @package MP\MessageQueue\Model
+ * @package MP\MessageQueue\Console\Command
  */
-class CleanupMessages
+class Start extends \MP\MessageQueue\Console\AbstractCommand
 {
     /**
-     * @var \MP\MessageQueue\Model\QueueManagement
+     * @const string
      */
-    private $queueManagement;
-
-    /**
-     * Observer constructor
-     *
-     * @param \MP\MessageQueue\Model\QueueManagement $queueManagement
-     */
-    public function __construct(
-        \MP\MessageQueue\Model\QueueManagement $queueManagement
-    ) {
-        $this->queueManagement = $queueManagement;
-    }
+    const COMMAND = 'mpdb:consumer:clean';
 
     /**
      * @return void
-     * @throws \Exception
      */
-    public function execute()
+    protected function configure()
     {
-        $this->queueManagement->markMessagesForDelete();
+        $this->setName(self::COMMAND);
+
+        parent::configure();
+    }
+
+    /**
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     * @return int|void|null
+     */
+    protected function execute(
+        \Symfony\Component\Console\Input\InputInterface $input,
+        \Symfony\Component\Console\Output\OutputInterface $output
+    ) {
+        return \Magento\Framework\Console\Cli::RETURN_SUCCESS;
     }
 }
