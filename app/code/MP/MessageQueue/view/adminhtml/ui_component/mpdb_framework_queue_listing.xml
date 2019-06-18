@@ -28,26 +28,26 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">mpdb_queue_listing.mpdb_queue_listing_data_source</item>
+            <item name="provider" xsi:type="string">mpdb_framework_queue_listing.mpdb_framework_queue_listing_data_source</item>
         </item>
     </argument>
 
     <settings>
-        <spinner>mpdb_queue_columns</spinner>
+        <spinner>queue_columns</spinner>
         <deps>
-            <dep>mpdb_queue_listing.mpdb_queue_listing_data_source</dep>
+            <dep>mpdb_framework_queue_listing.mpdb_framework_queue_listing_data_source</dep>
         </deps>
     </settings>
 
-    <dataSource name="mpdb_queue_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="mpdb_framework_queue_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>MP_MessageQueue::queue</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="mpdb_queue_listing_data_source">
+        <aclResource>MP_MessageQueue::framework_queue</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="mpdb_framework_queue_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>
@@ -82,7 +82,7 @@
         <paging name="listing_paging"/>
     </listingToolbar>
 
-    <columns name="mpdb_queue_columns">
+    <columns name="queue_columns">
         <selectionsColumn name="ids">
             <settings>
                 <indexField>id</indexField>

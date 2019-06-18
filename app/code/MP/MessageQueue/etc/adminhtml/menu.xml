@@ -28,8 +28,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="MP_MessageQueue::message_queue" title="Message Queue" translate="title" module="MP_MessageQueue" sortOrder="10" parent="MP_Base::merchantprotocol" resource="MP_MessageQueue::message_queue" />
-        <add id="MP_MessageQueue::queue" title="Queue" translate="title" module="MP_MessageQueue" sortOrder="20" parent="MP_MessageQueue::message_queue" action="mpdb/queue" resource="MP_MessageQueue::queue"/>
-        <add id="MP_MessageQueue::framework_queue" title="Framework Queue" translate="title" module="MP_MessageQueue" sortOrder="30" parent="MP_MessageQueue::message_queue" action="mpdb/framework/queue" resource="MP_MessageQueue::framework_queue"/>
+        <add id="MP_MessageQueue::queue" title="Extension Queue" translate="title" module="MP_MessageQueue" sortOrder="20" parent="MP_MessageQueue::message_queue" action="mpdb/queue" resource="MP_MessageQueue::queue"/>
+        <add id="MP_MessageQueue::framework_queue" title="Framework Queue" translate="title" module="MP_MessageQueue" sortOrder="30" parent="MP_MessageQueue::message_queue" action="mpdb/framework_queue" resource="MP_MessageQueue::framework_queue"/>
         <add id="MP_MessageQueue::settings" title="Settings" translate="title" module="MP_MessageQueue" sortOrder="999" parent="MP_MessageQueue::message_queue" action="adminhtml/system_config/edit/section/message_queue" resource="MP_MessageQueue::settings"/>
     </menu>
 </config>

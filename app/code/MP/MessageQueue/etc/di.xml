@@ -82,6 +82,7 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="mpdb_queue_listing_data_source" xsi:type="string">MP\MessageQueue\Model\ResourceModel\Message\Grid\Collection</item>
+                <item name="mpdb_framework_queue_listing_data_source" xsi:type="string">MP\MessageQueue\Model\ResourceModel\Framework\Message\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -104,5 +105,4 @@
     <type name="Magento\MysqlMq\Setup\Recurring">
         <plugin name="mysqlMqSetupRecurring" type="MP\MessageQueue\Plugin\MysqlMq\Setup\Recurring"/>
     </type>
-    <!--preference for="MP\Recurring\Api\Data\OrderInterface" type="MP\Recurring\Model\Order"/-->
 </config>
