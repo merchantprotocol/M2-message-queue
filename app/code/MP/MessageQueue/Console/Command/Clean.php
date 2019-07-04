@@ -77,8 +77,6 @@ HELP
         \Symfony\Component\Console\Input\InputInterface $input,
         \Symfony\Component\Console\Output\OutputInterface $output
     ) {
-        $this->writeln($output, __('Cleaning any outstanding subscriptions.'));
-
         $consumerName = $input->getArgument(self::ARGUMENT_CONSUMER);
 
         /** @var \Magento\Framework\MessageQueue\Consumer\Config\ConsumerConfigItemInterface $consumerConfigItem */
@@ -87,13 +85,15 @@ HELP
         $connectionName = $consumerConfigItem->getConnection();
         $connectionType = $this->getConnectionTypeResolver()->getConnectionType($connectionName);
 
+        $this->setConnectionType($connectionType);
+
         $select = $this->getConnection()->select()
             ->from(
-                ['qm' => $this->getTableName('queue_message', $connectionType)],
+                ['qm' => $this->getQueueMessageTable()],
                 ['id']
             )
             ->joinInner(
-                ['qms' => $this->getTableName('queue_message_status', $connectionType)],
+                ['qms' => $this->getQueueMessageStatusTable()],
                 implode(' AND ', ['qms.message_id = qm.id']),
                 ['status_id' => 'id']
             )
@@ -130,7 +130,7 @@ HELP
     protected function deleteFromQueueLockTable($messages)
     {
         $this->getConnection()
-            ->delete($this->getQueueLockTable(), ['message_code IN (?)', array_column($messages, 'code')]);
+            ->delete($this->getQueueLockTable(), ['message_code IN (?)' => array_column($messages, 'code')]);
     }
 
     /**
@@ -140,7 +140,7 @@ HELP
     protected function deleteFromQueueMessageStatusTable($messages)
     {
         $this->getConnection()
-            ->delete($this->getQueueMessageStatusTable(), ['id IN (?)', array_column($messages, 'status_id')]);
+            ->delete($this->getQueueMessageStatusTable(), ['id IN (?)' => array_column($messages, 'status_id')]);
     }
 
     /**
@@ -150,6 +150,6 @@ HELP
     protected function deleteFromQueueMessageTable($messages)
     {
         $this->getConnection()
-            ->delete($this->getQueueMessageStatusTable(), ['id IN (?)', array_column($messages, 'id')]);
+            ->delete($this->getQueueMessageTable(), ['id IN (?)' => array_column($messages, 'id')]);
     }
 }

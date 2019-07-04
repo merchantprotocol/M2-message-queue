@@ -44,6 +44,11 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
     private $startTime;
 
     /**
+     * @var string
+     */
+    private $connectionType;
+
+    /**
      * @var \Magento\Framework\MessageQueue\Consumer\ConfigInterface
      */
     private $consumerConfig;
@@ -58,10 +63,32 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
      */
     private $resource;
 
+    /**
+     * @var \Magento\Framework\Shell
+     */
+    private $shellBackground;
+
+    /**
+     * @var \Symfony\Component\Process\PhpExecutableFinder
+     */
+    private $phpExecutableFinder;
+
+    /**
+     * AbstractCommand constructor
+     *
+     * @param \Magento\Framework\MessageQueue\Consumer\ConfigInterface $consumerConfig
+     * @param \Magento\Framework\MessageQueue\ConnectionTypeResolver $connectionTypeResolver
+     * @param \Magento\Framework\App\ResourceConnection $resource
+     * @param \Magento\Framework\Shell $shellBackground
+     * @param \Symfony\Component\Process\PhpExecutableFinder $phpExecutableFinder
+     * @param string|null $name
+     */
     public function __construct(
         \Magento\Framework\MessageQueue\Consumer\ConfigInterface $consumerConfig,
         \Magento\Framework\MessageQueue\ConnectionTypeResolver $connectionTypeResolver,
         \Magento\Framework\App\ResourceConnection $resource,
+        \Magento\Framework\Shell $shellBackground,
+        \Symfony\Component\Process\PhpExecutableFinder $phpExecutableFinder,
         string $name = null
     ) {
         parent::__construct($name);
@@ -69,6 +96,8 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
         $this->consumerConfig         = $consumerConfig;
         $this->connectionTypeResolver = $connectionTypeResolver;
         $this->resource               = $resource;
+        $this->shellBackground        = $shellBackground;
+        $this->phpExecutableFinder    = $phpExecutableFinder;
     }
 
     /**
@@ -101,6 +130,25 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
     protected function getResource()
     {
         return $this->resource;
+    }
+
+    /**
+     * @param string $command
+     * @param array $arguments
+     * @return string
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    protected function cmd($command, array $arguments = [])
+    {
+        return $this->shellBackground->execute($command, $arguments);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getPhpExecutablePath()
+    {
+        return $this->phpExecutableFinder->find() ?: 'php';
     }
 
     /**
@@ -157,7 +205,7 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function getQueueTable($connectionType = null)
     {
-        return $this->getTableName('queue', $connectionType);
+        return $this->getTableName('queue', $connectionType ?: $this->connectionType);
     }
 
     /**
@@ -166,7 +214,7 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function getQueueMessageTable($connectionType = null)
     {
-        return $this->getTableName('queue_message', $connectionType);
+        return $this->getTableName('queue_message', $connectionType ?: $this->connectionType);
     }
 
     /**
@@ -175,7 +223,7 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function getQueueMessageStatusTable($connectionType = null)
     {
-        return $this->getTableName('queue_message_status', $connectionType);
+        return $this->getTableName('queue_message_status', $connectionType ?: $this->connectionType);
     }
 
     /**
@@ -236,5 +284,14 @@ class AbstractCommand extends \Symfony\Component\Console\Command\Command
     {
         $this->progressBar->finish();
         $this->writeln($output, '');
+    }
+
+    /**
+     * @param string $connectionType
+     * @return void
+     */
+    protected function setConnectionType($connectionType)
+    {
+        $this->connectionType = $connectionType;
     }
 }
