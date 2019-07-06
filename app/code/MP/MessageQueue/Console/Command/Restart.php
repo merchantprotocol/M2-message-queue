@@ -39,11 +39,33 @@ class Restart extends \MP\MessageQueue\Console\AbstractCommand
     const COMMAND = 'mpdb:consumer:restart';
 
     /**
+     * @const string
+     */
+    const ARGUMENT_CONSUMER = 'consumer';
+
+    /**
      * @return void
      */
     protected function configure()
     {
         $this->setName(self::COMMAND);
+        $this->setDescription('Restart MessageQueue consumer');
+
+        $this->addArgument(
+            self::ARGUMENT_CONSUMER,
+            \Symfony\Component\Console\Input\InputArgument::REQUIRED,
+            'The name of the consumer to be restarted.'
+        );
+
+        $this->setHelp(
+            <<<HELP
+This command restarts MessageQueue consumer by its name.
+
+To restart consumer which will process all queued messages and terminate execution:
+
+    <comment>%command.full_name% someConsumer</comment>
+HELP
+        );
 
         parent::configure();
     }
@@ -52,11 +74,24 @@ class Restart extends \MP\MessageQueue\Console\AbstractCommand
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @return int|void|null
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function execute(
         \Symfony\Component\Console\Input\InputInterface $input,
         \Symfony\Component\Console\Output\OutputInterface $output
     ) {
+        $consumerName = $input->getArgument(self::ARGUMENT_CONSUMER);
+        $arguments    = [$consumerName];
+
+        $php     = $this->getPhpExecutablePath();
+        $command = $php . ' ' . BP . '/bin/magento mpdb:consumer:%s %s';
+
+        $this->writeln($output, __('Stopping MessageQueue consumer.'));
+        $this->cmd($command, array_merge(['stop'], $arguments));
+
+        $this->writeln($output, __('Starting MessageQueue consumer.'));
+        $this->cmd($command, array_merge(['start'], $arguments));
+
         return \Magento\Framework\Console\Cli::RETURN_SUCCESS;
     }
 }
